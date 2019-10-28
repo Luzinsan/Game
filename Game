@@ -1,0 +1,414 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+/*#include "Header.h"
+#include "Source.cpp"*/
+
+enum class Bosses
+{
+	IudexGundyr = 0x00,
+	VordtOfTheBorealValley = 0x01,
+	Curse_RottedGreatwood = 0x02,
+	CrystalSage = 0x04,
+	AbyssWatchers = 0x08,
+	DeaconsOfTheDeep = 0x10,
+	HighLordWolnir = 0x20,
+	OldDemonKing = 0x40,
+	PontiffSulyvahn = 0x80,
+	YhormTheGiant = 0x100,
+	AldrichDevourerOfGods = 0x200,
+	DancerOfTheBorealValley = 0x400,
+	DragonslayerArmour = 0x800,
+	OceirosTheConsumedKing = 0x1000,
+	ChampionGundyr = 0x2000,
+	LothricYoungerPrince = 0x4000,
+	AncientWyvern = 0x8000,
+	NamelessKing = 0x10000,
+	SoulOfCinder = 0x20000
+};
+
+
+//Здоровье боссов на NG
+enum class BossesHealth
+{
+	IudexGundyr = 1037,
+	VordtOfTheBorealValley = 1328,
+	Curse_RottedGreatwood = 5405,
+	CrystalSage = 2723,
+	AbyssWatchers = 3096,
+	DeaconsOfTheDeep = 4099,
+	HighLordWolnir = 7052,
+	OldDemonKing = 5301,
+	PontiffSulyvahn = 5106,
+	YhormTheGiant = 27822,
+	AldrichDevourerOfGods = 4727,
+	DancerOfTheBorealValley = 5111,
+	DragonslayerArmour = 4581,
+	OceirosTheConsumedKing = 8087,
+	ChampionGundyr = 4956,
+	LothricYoungerPrince = 13529,
+	AncientWyvern = 7873,
+	NamelessKing = 11677,
+	SoulOfCinder = 10766
+};
+
+extern struct Boss
+{
+	Bosses name;
+	int health;
+};
+
+
+
+Bosses enemyClass()
+{
+	using std::cout;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	cout << "\tSelect the boss: \n\n";
+	cout << "\tIudex Gundyr = 1\n";
+	cout << "\tVordt Of The Boreal Valley = 2\n";
+	cout << "\tCurse-Rotted Greatwood = 3\n";
+	cout << "\tCrystal Sage = 4\n";
+	cout << "\tAbyss Watchers = 5\n";
+	cout << "\tDeacons Of The Deep = 6\n";
+	cout << "\tHigh Lord Wolnir = 7\n";
+	cout << "\tOld Demon King = 8\n";
+	cout << "\tPontiff Sulyvahn = 9\n";
+	cout << "\tYhorm The Giant = 10\n";
+	cout << "\tAldrich Devourer Of Gods = 11\n";
+	cout << "\tDancer Of The Boreal Valley = 12\n";
+	cout << "\tDragonslayer Armour = 13\n";
+	cout << "\tOceiros The Consumed King = 14\n";
+	cout << "\tChampion Gundyr = 15\n";
+	cout << "\tLothric Younger Prince = 16\n";
+	cout << "\tAncient Wyvern = 17\n";
+	cout << "\tNameless King = 18\n";
+	cout << "\tSoul Of Cinder = 19\n\n\t\t\t";
+	short type;
+	std::cin >> type;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+
+	return static_cast<Bosses>(type);
+}
+
+
+//Здесь определяем, столько у босса здоровья
+BossesHealth healthEnemy(Bosses type)
+{
+	std::cout << "\t\tThe stock of boss health is ";
+	switch (type)
+	{
+	case Bosses::IudexGundyr:
+		std::cout << static_cast<short>(BossesHealth::IudexGundyr);
+		return BossesHealth::IudexGundyr;
+		break;
+	case Bosses::VordtOfTheBorealValley:
+		std::cout << static_cast<short>(BossesHealth::VordtOfTheBorealValley);
+		return BossesHealth::VordtOfTheBorealValley;
+		break;
+	case Bosses::Curse_RottedGreatwood:
+		std::cout << static_cast<short>(BossesHealth::Curse_RottedGreatwood);
+		return BossesHealth::Curse_RottedGreatwood;
+		break;
+	case Bosses::CrystalSage:
+		std::cout << static_cast<short>(BossesHealth::CrystalSage);
+		return BossesHealth::CrystalSage;
+		break;
+	case Bosses::AbyssWatchers:
+		std::cout << static_cast<short>(BossesHealth::AbyssWatchers);
+		return BossesHealth::AbyssWatchers;
+		break;
+	case Bosses::DeaconsOfTheDeep:
+		std::cout << static_cast<short>(BossesHealth::DeaconsOfTheDeep);
+		return BossesHealth::DeaconsOfTheDeep;
+		break;
+	case Bosses::HighLordWolnir:
+		std::cout << static_cast<short>(BossesHealth::HighLordWolnir);
+		return BossesHealth::HighLordWolnir;
+		break;
+	case Bosses::OldDemonKing:
+		std::cout << static_cast<short>(BossesHealth::OldDemonKing);
+		return BossesHealth::OldDemonKing;
+		break;
+	case Bosses::PontiffSulyvahn:
+		std::cout << static_cast<short>(BossesHealth::PontiffSulyvahn);
+		return BossesHealth::PontiffSulyvahn;
+		break;
+	case Bosses::YhormTheGiant:
+		std::cout << static_cast<short>(BossesHealth::YhormTheGiant);
+		return BossesHealth::YhormTheGiant;
+		break;
+	case Bosses::AldrichDevourerOfGods:
+		std::cout << static_cast<short>(BossesHealth::AldrichDevourerOfGods);
+		return BossesHealth::AldrichDevourerOfGods;
+		break;
+	case Bosses::DancerOfTheBorealValley:
+		std::cout << static_cast<short>(BossesHealth::DancerOfTheBorealValley);
+		return BossesHealth::DancerOfTheBorealValley;
+		break;
+	case Bosses::DragonslayerArmour:
+		std::cout << static_cast<short>(BossesHealth::DragonslayerArmour);
+		return BossesHealth::DragonslayerArmour;
+		break;
+	case Bosses::OceirosTheConsumedKing:
+		std::cout << static_cast<short>(BossesHealth::OceirosTheConsumedKing);
+		return BossesHealth::OceirosTheConsumedKing;
+		break;
+	case Bosses::ChampionGundyr:
+		std::cout << static_cast<short>(BossesHealth::ChampionGundyr);
+		return BossesHealth::ChampionGundyr;
+		break;
+	case Bosses::LothricYoungerPrince:
+		std::cout << static_cast<short>(BossesHealth::LothricYoungerPrince);
+		return BossesHealth::LothricYoungerPrince;
+		break;
+	case Bosses::AncientWyvern:
+		std::cout << static_cast<short>(BossesHealth::AncientWyvern);
+		return BossesHealth::AncientWyvern;
+		break;
+	case Bosses::NamelessKing:
+		std::cout << static_cast<short>(BossesHealth::NamelessKing);
+		return BossesHealth::NamelessKing;
+		break;
+	case Bosses::SoulOfCinder:
+		std::cout << static_cast<short>(BossesHealth::SoulOfCinder);
+		return BossesHealth::SoulOfCinder;
+		break;
+	default: std::cout << "Fatal error";
+	}
+}
+
+Boss createEnemy() 
+{
+	//Создание структуры врага
+	Boss enemy;
+	//Выбор определённого босса
+	enemy.name = enemyClass();
+	//В соответствии с этим, определяем первоначальное здоровье(на NG)
+	enemy.health = static_cast<int>(healthEnemy(enemy.name));
+	return enemy;
+};
+
+
+enum class GamerType
+{
+	KNIGHT = 1,
+	MERCENARY,
+	WARRIOR,
+	HERALD,
+	THIEF,
+	ASSASSIN,
+	SORCERER,
+	PYROMANCER,
+	CLERIC,
+	DEPRIVED
+};
+
+enum class INitialHealth
+{
+	KNIGHT = 454,
+	MERCENARY = 427,
+	WARRIOR = 515,
+	HERALD = 454,
+	THIEF = 403,
+	ASSASSIN = 403,
+	SORCERER = 381,
+	PYROMANCER = 427,
+	CLERIC = 403,
+	DEPRIVED = 403
+};
+
+struct Gamer
+{
+	GamerType gamer;
+	short initialHealth;
+	std::string name;
+};
+
+//Узнаём имя игрока
+std::string specifyName()
+{
+	std::cout << "\n\n\tMy Lord, what shall I call you, loveliest?\t\t";
+	std::string name;
+	std::cin.ignore(32767, '\n');
+	std::getline(std::cin, name);
+	return name;
+}
+
+/*Здесь определяем, столько первоначального здоровья
+имеет игрок (исходя из класса выбранного персонажа)*/
+INitialHealth initialHealth(GamerType gamerClass)
+{
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	std::cout << "\n\tThe stock of your health is - ";
+	switch (gamerClass)
+	{
+	case GamerType::KNIGHT:
+		std::cout << static_cast<short>(INitialHealth::KNIGHT);
+		return INitialHealth::KNIGHT;
+		break;
+	case GamerType::MERCENARY:
+		std::cout << static_cast<short>(INitialHealth::MERCENARY);
+		return INitialHealth::MERCENARY;
+		break;
+	case GamerType::WARRIOR:
+		std::cout << static_cast<short>(INitialHealth::WARRIOR);
+		return INitialHealth::WARRIOR;
+		break;
+	case GamerType::HERALD:
+		std::cout << static_cast<short>(INitialHealth::HERALD);
+		return INitialHealth::HERALD;
+		break;
+	case GamerType::THIEF:
+		std::cout << static_cast<short>(INitialHealth::THIEF);
+		return INitialHealth::THIEF;
+		break;
+	case GamerType::ASSASSIN:
+		std::cout << static_cast<short>(INitialHealth::ASSASSIN);
+		return INitialHealth::ASSASSIN;
+		break;
+	case GamerType::SORCERER:
+		std::cout << static_cast<short>(INitialHealth::SORCERER);
+		return INitialHealth::SORCERER;
+		break;
+	case GamerType::PYROMANCER:
+		std::cout << static_cast<short>(INitialHealth::PYROMANCER);
+		return INitialHealth::PYROMANCER;
+		break;
+	case GamerType::CLERIC:
+		std::cout << static_cast<short>(INitialHealth::CLERIC);
+		return INitialHealth::CLERIC;
+		break;
+	case GamerType::DEPRIVED:
+		std::cout << static_cast<short>(INitialHealth::DEPRIVED);
+		return INitialHealth::DEPRIVED;
+		break;
+	default: std::cout << "Fatal error";
+	}
+}
+
+
+GamerType gamerClass()
+{
+	std::cout << "\tSelect the class of the character for which you will play.\n\n";
+	std::cout << "\tKNIGHT = 1\tASSASSIN = 6\n\tMERCENARY = 2\tSORCERER = 7\n\t";
+	std::cout << "WARRIOR = 3\tPYROMANCER = 8\n\tHERALD = 4\tCLERIC = 9\n\tTHIEF = 5\tDEPRIVED = 10\n\t\t\t";
+	short type;
+	std::cin >> type;
+	return static_cast<GamerType>(type);
+}
+
+
+
+Gamer createGamer()
+{
+	//Создание структуры игрока
+	Gamer you;
+	//Выбор класса персонажа
+	you.gamer = { gamerClass() };
+	//Определяем запас здоровья
+	you.initialHealth = static_cast<short>(initialHealth(you.gamer));
+	//А как, собственно, звать персонажа?
+	you.name = specifyName();
+	return you;
+}
+
+bool greeting()
+{
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	std::cout << "\tWelcome, my young friend. Would you like to fight monsters?\n\n";
+	std::cout << "\tAnswer:\t\t 1 - yes\t\t0 - no\n\t\t\t\t\t";
+	bool choice;
+	std::cin >> choice;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	return choice;
+}
+
+
+int firstRound()
+{
+	using std::cout;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	cout << "\tYou have three attempts, during which you can choose the type of attack.";
+	cout << "\n\tAfter that, the remaining amount of health will appear on the screen, ";
+	cout << "\n\tand if it is not equal to zero, ";
+	cout<<"\n\tthe second round will begin with an increased 20% health from the original one";
+	return 0;
+}
+
+
+struct IntermediateData
+{
+	short interHealthYou;
+	short interHealthBoss;
+	short number_round;
+};
+
+
+int main() 
+{
+	if(greeting())
+	{
+		Gamer you = createGamer(); 
+		Boss enemy = createEnemy();
+		IntermediateData anim;
+
+
+		std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+		std::cout << "\n\t\t\t\t\tSTART!!!\n\t\t\t\t\t\n";
+
+	
+
+		anim.interHealthBoss = enemy.health;
+		anim.interHealthYou = you.initialHealth;
+
+
+		for (int i = 0; i < 3; i++) {
+			if (anim.interHealthBoss > 0 && anim.interHealthYou > 0) {
+
+				std::cout << "Attack:\t\tfire - 1\tcold - 2\tcounterattack - 3\tdarkness - 4\tcutting weapons - 5\n";
+				std::cout << "\tstabbing weapon - 6\tcrushing weapons - 7\ttoxin - 8\tlightning - 9\tstab in the back - 10";
+				std::cout << "\tсonsecrated weapons - 11\tbleeding - 12\tfrost - 13\t\n\n";
+				short attack;
+				std::cin >> attack;
+	
+
+
+				if (((attack == 1) && ((short)enemy.name == ((short)Bosses::IudexGundyr || (short)Bosses::Curse_RottedGreatwood || (short)Bosses::AldrichDevourerOfGods
+					|| (short)Bosses::VordtOfTheBorealValley || (short)Bosses::NamelessKing)))
+					|| ((attack == 2) && ((short)enemy.name == (short)Bosses::IudexGundyr)) || ((attack == 3) && ((short)enemy.name == ((short)Bosses::IudexGundyr
+						|| (short)Bosses::PontiffSulyvahn))) || ((attack == 4) && ((short)enemy.name == ((short)Bosses::VordtOfTheBorealValley || (short)Bosses::OldDemonKing
+							|| (short)Bosses::DancerOfTheBorealValley))) || ((attack == 5) && ((short)enemy.name == ((short)Bosses::Curse_RottedGreatwood || (short)Bosses::CrystalSage || (short)Bosses::DeaconsOfTheDeep)))
+					|| ((attack == 6) && ((short)enemy.name == ((short)Bosses::Curse_RottedGreatwood || (short)Bosses::CrystalSage || (short)Bosses::DeaconsOfTheDeep || (short)Bosses::PontiffSulyvahn)))
+					|| ((attack == 7) && ((short)enemy.name == ((short)Bosses::CrystalSage || (short)Bosses::DeaconsOfTheDeep || (short)Bosses::DancerOfTheBorealValley)))
+					|| ((attack == 8) && ((int)enemy.name & (int)Bosses::CrystalSage))
+					|| ((attack == 9) && ((short)enemy.name == ((short)Bosses::AbyssWatchers || (short)Bosses::YhormTheGiant || (short)Bosses::AldrichDevourerOfGods || (short)Bosses::DancerOfTheBorealValley
+					|| (short)Bosses::OceirosTheConsumedKing || (short)Bosses::ChampionGundyr || (short)Bosses::LothricYoungerPrince || (short)Bosses::AncientWyvern || (short)Bosses::NamelessKing || (short)Bosses::SoulOfCinder)))
+					|| ((attack == 10) && ((short)enemy.name == (short)Bosses::AbyssWatchers))
+					|| ((attack == 11) && ((short)enemy.name == (short)Bosses::HighLordWolnir)) || ((attack == 12) && ((short)enemy.name == (short)Bosses::DancerOfTheBorealValley))
+					|| ((attack == 13) && ((short)enemy.name == ((short)Bosses::DragonslayerArmour || (short)Bosses::AncientWyvern || (short)Bosses::LothricYoungerPrince))))
+				{
+
+					srand(time(0)); // автоматическая рандомизация
+					int random_hit = rand() % enemy.health + (0.80 * enemy.health);
+					anim.interHealthBoss -= random_hit;
+					anim.interHealthYou -= (random_hit * 0.2);
+				}
+				else
+				{
+					srand(time(0)); // автоматическая рандомизация
+					int random_hit = rand() % enemy.health + (0.10 * enemy.health);
+					anim.interHealthBoss -= random_hit;
+					anim.interHealthYou -= (random_hit * 0.8);
+					std::cout << "\n\tYour health is "<<anim.interHealthYou;
+					std::cout << "\n\tBoss health is " << anim.interHealthBoss;
+				}
+			}
+			else
+				std::cout << "\t\t\t\tYOU DIED";
+		}
+		std::cout << "Absolute victory. You survived!!!";
+	}
+	return 0;
+}
