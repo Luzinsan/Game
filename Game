@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <cstdlib>
-/*#include "Header.h"
-#include "Source.cpp"*/
 
 enum class Bosses
 {
